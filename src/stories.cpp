@@ -12,40 +12,36 @@
 
 stories::stories(){
     
-  
-    moveSpeed = ofRandom(2, 8);
-    sTime = ofGetElapsedTimef();
-    
     
     img1.load("img1.png");
-    img2.load("img2.png");
-    img3.load("img3.png");
+    img2.load("img3.png");
     img3.load("img4.png");
-    
-    loc = ofPoint(x, -120, 0);
-    
+    img4.load("img2.png");
+   
+    catchUpSpeed = 0.04f;
 
 }
 
 
 
 void stories::setup(){
+    
 }
 
 void stories::update(){
-    
-    
   
-
-
+    
 }
 
 void stories::draw(){
     
-    img1.draw(-80,-120,480,320);
-    img2.draw(400,-120,480,320);
-    img3.draw(880,-120,480,320);
-    img4.draw(1460,-120,480,320);
+    img1.draw(pos.x,120,480,360);
+    img2.draw(pos.x+480,120,480,360);
+    img3.draw(pos.x+960,120,480,360);
+    img4.draw(pos.x+1440,120,480,360);
     
-//    ofTranslate(loc);
+}
+
+void stories::zenoToPoint(float catchX, float catchY){
+    pos.x = catchUpSpeed * catchX + (1-catchUpSpeed) * pos.x;
 }

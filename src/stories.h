@@ -22,8 +22,9 @@ public:
     void setup();
     void update();
     void draw();
-    ofPoint loc;
-    
+    ofPoint pos;
+    void	zenoToPoint(float catchX, float catchY);
+    float catchUpSpeed;
     
 private:
     
@@ -35,8 +36,6 @@ private:
     float sTime;	// start time
     float sWeight;      // scale weight
     float moveSpeed;	
-    float move;
-    float dScale;
 };
 
 #endif /* stories_h */

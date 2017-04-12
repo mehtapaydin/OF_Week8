@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "stories.h"
 #include "stories.hpp"
+
 //--------------------------------------------------------------
 
 // relative point list  (starting at origin)
@@ -17,11 +18,12 @@ ofPoint gPoints[] = {pBot, pRi, pTop, pLe, pEnd};
 simpleGesture gesture;
 
 
+
 //--------------------------------------------------------------
 
 void ofApp::setup(){
     
-    float pos;
+  
     
     ofSetFrameRate(60);
     ofSetVerticalSync(true);
@@ -37,23 +39,19 @@ void ofApp::setup(){
     gesture.setup(gPoints, 4, 2000);
     
     stories();
+    myStories.pos.x = -240;
+ 
 
 }
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
+
 	fingersFound.clear();
-    myStories.update();
+  
     
-    for(int i = 0; i < simpleHands.size(); i++){
-        bool isLeft        = simpleHands[i].isLeft;
-        ofPoint handPos    = simpleHands[i].handPos;
-        
-         myStories.loc = ofPoint(handPos.x, -120,0);
-    
-    }
+
     
 	//here is a simple example of getting the hands and drawing each finger and joint
 	//the leap data is delivered in a threaded callback - so it can be easier to work with this copied hand data
@@ -191,11 +189,14 @@ bool simpleGesture::track (ofPoint iPt) {
   
   // cout << iPt.x << " " << iPt.y << " " << curIdx << endl;  // debug
   return (false);
+    
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+    
+    myStories.draw();
  
     
     ofBackgroundGradient(ofColor(90, 90, 90), ofColor(30, 30, 30),  OF_GRADIENT_BAR);
@@ -230,7 +231,13 @@ void ofApp::draw(){
         bool gDone = gesture.track(simpleHands[0].fingers[INDEX].tip);  // send index finger tip
         if (gDone)
           cout << "----------------------GOT IT----------------------" << endl;
-           myStories.draw();
+            ofSetColor(40,40,255);
+            ofFill();
+            ofDrawCircle (handPos.x, 20,40);
+            myStories.zenoToPoint(handPos.x, 120);
+            ofNoFill();
+        
+
         
         
         for (int f=0; f<5; f++) {

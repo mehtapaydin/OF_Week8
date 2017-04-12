@@ -7,6 +7,7 @@
 
 
 
+
 class ofApp : public ofBaseApp{
   
 public:
@@ -34,8 +35,8 @@ public:
 	vector <int> fingersFound;
 	ofEasyCam cam;
     
- 
     stories myStories;
+
  
 
     
@@ -59,4 +60,6 @@ class simpleGesture {
     int curIdx;	// current point we are matching to
     ofPoint lastPoint;  // where last point matched
 }; 
+
+
 
